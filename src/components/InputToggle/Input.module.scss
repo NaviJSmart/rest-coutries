@@ -1,0 +1,19 @@
+label {
+        
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    transition: all 0.4s;
+    &:hover {
+        background-color: #ece8e8;
+    }
+    input {
+        display: none;
+    }
+    span {
+        font-weight: 600;
+        padding-left: 5px;
+    }
+}
