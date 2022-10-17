@@ -7,17 +7,19 @@
 
 body {
   font-family: "Nunito Sans", sans-serif;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 [data-theme="light"] {
   --bg-color: hsl(0, 0%, 98%);
+  --bg-button: hsl(207, 26%, 17%);
   --bg-elemets: hsl(0, 0%, 100%);
   --primary-color: hsl(200, 15%, 8%);
 }
 
 [data-theme="dark"] {
   --bg-color: hsl(207, 26%, 17%);
+  --bg-button: hsl(0, 0%, 98%);
   --bg-elemets: #2b3945;
   --primary-color: hsl(0, 0%, 100%);
 }
