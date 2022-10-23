@@ -11,7 +11,7 @@ const ThemeContextProvider = ({ children }) => {
   }
   
   const value = [theme, toggleHandler];
-  console.log(theme)
+  
   return (
     <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
   );

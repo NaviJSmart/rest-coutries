@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import Error404 from "../../components/404/Error404";
 import BorderCountrie from "../../components/BorderCountrie";
 import Spinner from "../../components/Spinner";
 import useCountriesAPI from "../../services/useCountriesAPI";
@@ -9,6 +10,7 @@ const SingleCountrie = () => {
   const { getSingleCountrie } = useCountriesAPI();
   const { nameId } = useParams();
   const [data, setData] = useState<any>(null);
+  console.log(data);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     onRequest();
@@ -36,6 +38,7 @@ const SingleCountrie = () => {
           <span>&#8592;</span> Back
         </Link>
       </div>
+      
       {loading}
       {data && (
         <div className={s.countrie__wrapper}>
@@ -43,12 +46,12 @@ const SingleCountrie = () => {
             <img src={data.flags} alt={nameId} />
           </div>
           <div className={s.countrie__content}>
-            <h2 className={s.countrie__title}>{nameId}</h2>
+            <h2 className={s.countrie__title}>{data.name}</h2>
             <div className={s.countrie__items}>
               <div className={s.countrie__items_1}>
                 <p>
-                  <span>Native Name:</span>
-                  {data.name}
+                  <span>Native Name: </span>
+                  {data.nativeName}
                 </p>
                 <p>
                   <span>Population: </span>
@@ -59,7 +62,7 @@ const SingleCountrie = () => {
                   {data.region}
                 </p>
                 <p>
-                  <span>Sub Region:</span>
+                  <span>Sub Region: </span>
                   {data.subregion}
                 </p>
                 <p>
@@ -73,17 +76,17 @@ const SingleCountrie = () => {
                   {data.tld}
                 </p>
                 <p>
-                  <span>Currencies:</span>
+                  <span>Currencies: </span>
                   {data.currencies}
                 </p>
                 <p>
-                  <span>Languages:</span>
+                  <span>Languages: </span>
                   {data.languages}
                 </p>
               </div>
             </div>
             <div className={s.countrie__borders}>
-              <p>Border Countries:</p>
+              <p>Border Countries: </p>
               <div className={s.countrie__bor}>
                 {(data.borders && data.borders.map((bor: string) => (
                   <BorderCountrie border={bor} />

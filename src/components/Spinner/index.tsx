@@ -11,8 +11,8 @@ const Spinner = () => {
         display: "block",
         shapeRendering: "auto",
       }}
-      width="400px"
-      height="400px"
+      width="350px"
+      height="350px"
       viewBox="0 0 100 100"
       preserveAspectRatio="xMidYMid"
     >

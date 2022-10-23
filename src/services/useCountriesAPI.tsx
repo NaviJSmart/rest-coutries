@@ -5,26 +5,33 @@ const useCountriesAPI = () => {
 
   const _base = "https://restcountries.com/v3.1/";
 
-  const getAllCoutries = async (views: [], index: number) => {
-    const res = await request(`${_base}all`);
-    const data = await res.slice(views.length, index);
-    return data;
+  const getAllCoutries = async () => {
+    const res = await request(
+      `${_base}all?fields=name,capital,flags,region,population`
+    );
+    return res;
   };
 
   const getSingleCountrie = async (name: string) => {
-    let res = await request(`${_base}name/${name}`);
+    let res = await request(`${_base}name/${name}?fullText=true`);
+    console.log(res, 'by single name');
     return _transformSingleCountrie(res[0]);
   };
 
-  const getSingleCountrieByCode = async (code: string) => {
-    const res = await request(`${_base}alpha/${code}`);
-    return res[0].name.common
+  const getSingleCountrieByName = async (name: string) => {
+    const res = await request(`${_base}name/${name}`);
+    console.log(res, 'by name')
+    return res;
   };
-
+  const getCountriesByRegion = async (region: string) => {
+    const res = await request(`${_base}region/${region}`);
+    return res;
+  };
 
   const _transformSingleCountrie = (data: any) => {
     return {
-      name: Object.values(data.name.nativeName).map(
+      name: data.name.common,
+      nativeName: Object.values(data.name.nativeName).map(
         (item: any) => item.common
       )[0],
       flags: data.flags.svg,
@@ -48,7 +55,8 @@ const useCountriesAPI = () => {
     process,
     setProcess,
     getSingleCountrie,
-    getSingleCountrieByCode,
+    getSingleCountrieByName,
+    getCountriesByRegion,
   };
 };
 

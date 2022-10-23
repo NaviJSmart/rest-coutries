@@ -1,0 +1,50 @@
+.input_select {
+  position: relative;
+  color: var(--primary-color);
+  border-radius: 5px;
+  width: 200px;
+  font-size: 14px;
+  
+  cursor: pointer;
+  &_wrapper {
+    padding: 12px 0 12px 15px;
+    
+    border-radius: 5px;
+    background-color: var(--bg-elemets);
+    box-shadow: rgb(17 21 23 / 25%) 0px 4px 12px 0px;
+    span {
+      display: inline-block;
+    }
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    svg {
+      margin-right: 10px;
+    }
+  }
+  ul {
+    display: none;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    background-color: var(--bg-elemets);
+    margin-top: 10px;
+    box-shadow: rgb(17 21 23 / 25%) 0px 4px 12px 0px;
+    border-radius: 5px;
+    padding: 10px 0;
+    li {
+      list-style: none;
+      padding: 6px 0 6px 15px;
+      &:hover {
+        background-color: var(--bg-color);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .input_select {
+    margin-top: 30px;
+  }
+}

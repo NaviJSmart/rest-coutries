@@ -1,0 +1,32 @@
+.search__input {
+  
+  .input__wrapper {
+    position: relative;
+
+    
+    span {
+      position: absolute;
+      left: 30px;
+      top: 0;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      fill: var(--primary-color);
+    }
+    input {
+      width: 100%;
+      display: block;
+      background-color: var(--bg-elemets);
+      color: var(--primary-color);
+      border: none;
+      border-radius: 5px;
+      padding: 15px 120px 15px 70px;
+      box-shadow: rgb(17 21 23 / 25%) 0px 4px 12px 0px;
+      @media screen and (max-width:400px) {
+        padding: 15px 10px 15px 60px;
+      }
+    }
+  }
+}
+
