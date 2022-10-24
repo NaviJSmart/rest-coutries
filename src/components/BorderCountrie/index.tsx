@@ -5,15 +5,17 @@ import countries from "i18n-iso-countries";
 import s from "./BorderCountrie.module.scss";
 
 function BorderCountrie({ border }: any) {
-  
   countries.registerLocale(require("i18n-iso-countries/langs/en.json"));
   const [name] = useState(() => countries.getName(border, "en"));
-  
 
   return (
-    <Link className={s.link__btn} to={`/${name}`}>
-      {name}
-    </Link>
+    <>
+      {name ? (
+        <Link className={s.link__btn} to={`/${name}`}>
+          {name}
+        </Link>
+      ) : null}
+    </>
   );
 }
 

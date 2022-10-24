@@ -1,9 +1,10 @@
-import React from 'react'
-import error404 from '../../assets/404.gif'
+import s from './Error.module.scss'
+import {ReactComponent as Monster404} from '../../assets/Monster.svg'
+
 const Error404 = () => {
   return (
-    <div>
-        <img src={error404} alt="404" />
+    <div className={s.error_message}>
+        <Monster404/>
     </div>
   )
 }

@@ -1,8 +1,10 @@
 import {Link } from 'react-router-dom'
+import useCountriesAPI from '../../services/useCountriesAPI';
 import InputToggle from "../InputToggle";
 import s from "./Header.module.scss";
 
 const Header = (): JSX.Element => {
+  
   return (
     <div className={s.header}>
       <div className={s.header__content}>

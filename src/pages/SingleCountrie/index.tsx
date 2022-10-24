@@ -7,7 +7,7 @@ import useCountriesAPI from "../../services/useCountriesAPI";
 import s from "./SingleCountrie.module.scss";
 
 const SingleCountrie = () => {
-  const { getSingleCountrie } = useCountriesAPI();
+  const { getSingleCountrie, process, setProcess } = useCountriesAPI();
   const { nameId } = useParams();
   const [data, setData] = useState<any>(null);
   console.log(data);
@@ -30,7 +30,7 @@ const SingleCountrie = () => {
   };
 
   const loading = isLoading ? <Spinner /> : null;
-
+  const isError = process ? <Error404 /> : null;
   return (
     <div className={s.container}>
       <div className={s.btn_back}>
@@ -38,8 +38,9 @@ const SingleCountrie = () => {
           <span>&#8592;</span> Back
         </Link>
       </div>
-      
-      {loading}
+
+      {!process && loading}
+      {isError}
       {data && (
         <div className={s.countrie__wrapper}>
           <div className={s.countrie__img}>
@@ -88,9 +89,11 @@ const SingleCountrie = () => {
             <div className={s.countrie__borders}>
               <p>Border Countries: </p>
               <div className={s.countrie__bor}>
-                {(data.borders && data.borders.map((bor: string) => (
-                  <BorderCountrie border={bor} />
-                ))) || 'There is no border'}
+                {(data.borders &&
+                  data.borders.map((bor: string) => (
+                    <BorderCountrie border={bor} key={bor} />
+                  ))) ||
+                  "There is no border"}
               </div>
             </div>
           </div>

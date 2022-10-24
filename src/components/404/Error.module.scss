@@ -1,0 +1,10 @@
+.error_message {
+  svg {
+    width: 500px;
+    height: 500px;
+    @media screen and (max-width: 550px) {
+      width: 250px;
+      height: 250px;
+    }
+  }
+}

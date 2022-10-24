@@ -14,13 +14,11 @@ const useCountriesAPI = () => {
 
   const getSingleCountrie = async (name: string) => {
     let res = await request(`${_base}name/${name}?fullText=true`);
-    console.log(res, 'by single name');
     return _transformSingleCountrie(res[0]);
   };
 
   const getSingleCountrieByName = async (name: string) => {
     const res = await request(`${_base}name/${name}`);
-    console.log(res, 'by name')
     return res;
   };
   const getCountriesByRegion = async (region: string) => {

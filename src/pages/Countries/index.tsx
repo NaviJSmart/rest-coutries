@@ -14,19 +14,24 @@ const Countries = () => {
     getSingleCountrieByName,
     getCountriesByRegion,
     process,
+    setProcess,
   } = useCountriesAPI();
-  const [views, setView] = useState<any>([]);
+
+  const [views, setView] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState("");
   const [name, setName] = useState("");
   const [region, setRegion] = useState("");
 
   useEffect(() => {
     onRequest();
+    return () => {
+      setView(null);
+    };
   }, [name, region]);
-  console.log(isError);
+
   const onRequest = () => {
     setIsLoading(true);
+    setProcess(false);
     if (!name && !region) {
       getAllCoutries()
         .then(setView)
@@ -38,8 +43,7 @@ const Countries = () => {
     } else {
       getCountriesByRegion(region)
         .then(setView)
-        .then(() => setIsLoading(false))
-        .then((e) => setIsError(String(e)));
+        .then(() => setIsLoading(false));
     }
   };
 
@@ -47,9 +51,9 @@ const Countries = () => {
     ? [...Array(8)].map((a, i) => <Skeleton key={i} />)
     : null;
 
-  const viewUI = views.map((item: any) => (
-    <UICard item={item} key={item.name.common} />
-  ));
+  const viewUI = views
+    ? views.map((item: any) => <UICard item={item} key={item.name.common} />)
+    : null;
 
   const ifError = process ? <Error404 /> : null;
   return (
@@ -59,7 +63,7 @@ const Countries = () => {
         <InputSelect setRegionName={setRegion} />
       </div>
       <div className={s.container_grid}>
-        {loading}
+        {!process && loading}
         {ifError}
         {viewUI}
       </div>

@@ -1,8 +1,7 @@
 import { useCallback, useState } from "react";
 
 const useFetch = () => {
-  const [process, setProcess] = useState('')
-  console.log(process)
+  const [process, setProcess] = useState(false)
   const request = useCallback(
     async (url: string, headers = { "Content-type": "application/json" }) => {
       
@@ -16,7 +15,7 @@ const useFetch = () => {
       } catch (e: unknown) {
         
         if (e instanceof Error) {
-          setProcess(String(e))
+          setProcess(true)
           throw e;
         }
       }

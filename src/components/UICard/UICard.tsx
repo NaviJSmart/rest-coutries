@@ -1,6 +1,6 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import s from "./Card.module.scss";
+
 const UICard = ({ item }: any) => {
   const { name, capital, region, flags, population } = item;
   return (
