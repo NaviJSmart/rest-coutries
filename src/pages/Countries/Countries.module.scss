@@ -35,4 +35,8 @@
   border-radius: 5px;
   padding: 15px 50px;
   box-shadow: rgb(17 21 23 / 25%) 0px 4px 12px 0px;
+  cursor: pointer;
+  &:hover {
+    background-color: var(--bg-color);
+  }
 }

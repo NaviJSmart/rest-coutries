@@ -11,39 +11,55 @@ import s from "./Countries.module.scss";
 const Countries = () => {
   const {
     getAllCoutries,
-    getSingleCountrieByName,
+    getCountrieByName,
     getCountriesByRegion,
     process,
     setProcess,
   } = useCountriesAPI();
 
-  const [views, setView] = useState<any>(null);
+  const [data, setData] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [name, setName] = useState("");
   const [region, setRegion] = useState("");
 
+  const [views, setViews] = useState<{}[]>([]);
+  const [index, setIndex] = useState(views.length + 8);
+
   useEffect(() => {
     onRequest();
     return () => {
-      setView(null);
+      setData(null);
+      setViews([]);
+      setIndex(8);
     };
   }, [name, region]);
+
+  useEffect(() => {
+    onLoadMore(data);
+  }, [index, data]);
 
   const onRequest = () => {
     setIsLoading(true);
     setProcess(false);
     if (!name && !region) {
       getAllCoutries()
-        .then(setView)
+        .then(setData)
         .then(() => setIsLoading(false));
     } else if (name) {
-      getSingleCountrieByName(name)
-        .then(setView)
+      getCountrieByName(name)
+        .then(setData)
         .then(() => setIsLoading(false));
     } else {
       getCountriesByRegion(region)
-        .then(setView)
+        .then(setData)
         .then(() => setIsLoading(false));
+    }
+  };
+
+  const onLoadMore = async (data: any) => {
+    if (data) {
+      const sli = await data.slice(views.length, index);
+      setViews([...views, ...sli]);
     }
   };
 
@@ -68,13 +84,15 @@ const Countries = () => {
         {viewUI}
       </div>
       <div className={s.btn_container}>
-        {/* <button
-          className={s.btn_primary}
-          disabled={isLoading}
-         
-        >
-          {isLoading ? "Loading ..." : "Load more"}
-        </button> */}
+        {data && data.length !== views.length ? (
+          <button
+            className={s.btn_primary}
+            disabled={isLoading}
+            onClick={() => setIndex(index + 8)}
+          >
+            Load more
+          </button>
+        ) : null}
       </div>
     </>
   );

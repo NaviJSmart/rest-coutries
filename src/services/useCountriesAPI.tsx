@@ -17,7 +17,7 @@ const useCountriesAPI = () => {
     return _transformSingleCountrie(res[0]);
   };
 
-  const getSingleCountrieByName = async (name: string) => {
+  const getCountrieByName = async (name: string) => {
     const res = await request(`${_base}name/${name}`);
     return res;
   };
@@ -53,7 +53,7 @@ const useCountriesAPI = () => {
     process,
     setProcess,
     getSingleCountrie,
-    getSingleCountrieByName,
+    getCountrieByName,
     getCountriesByRegion,
   };
 };
