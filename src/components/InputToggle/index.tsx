@@ -4,9 +4,12 @@ import "./Input.module.scss";
 const InputToggle = (): JSX.Element => {
   const [toggle, setToggle] = useState<boolean>(false);
   const [, toggleHandler] = useThemeContext();
+
   useEffect(() => {
     toggleHandler(toggle);
   }, [toggle, toggleHandler]);
+
+  
   return (
     <label htmlFor="theme_mode">
       {toggle ? (

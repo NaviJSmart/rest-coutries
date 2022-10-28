@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Error404 from "../../components/404/Error404";
 import InputSearch from "../../components/InputSearch";
 import InputSelect from "../../components/InputSelect";
+import ScrollTop from "../../components/ScrollToTop";
 import Skeleton from "../../components/Skeleton/Skeleton";
 import UICard from "../../components/UICard/UICard";
 import useCountriesAPI from "../../services/useCountriesAPI";
@@ -58,8 +59,8 @@ const Countries = () => {
 
   const onLoadMore = async (data: any) => {
     if (data) {
-      const sli = await data.slice(views.length, index);
-      setViews([...views, ...sli]);
+      const newData = await data.slice(views.length, index);
+      setViews([...views, ...newData]);
     }
   };
 
@@ -79,6 +80,7 @@ const Countries = () => {
         <InputSelect setRegionName={setRegion} />
       </div>
       <div className={s.container_grid}>
+        
         {!process && loading}
         {ifError}
         {viewUI}
@@ -93,6 +95,7 @@ const Countries = () => {
             Load more
           </button>
         ) : null}
+        <ScrollTop />
       </div>
     </>
   );

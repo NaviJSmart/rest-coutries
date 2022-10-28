@@ -1,14 +1,33 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import s from "./InputSelect.module.scss";
 import { ReactComponent as Arrow } from "../../assets/arrow.svg";
-const regions = ["Asia", "Africa", "Europe", "Oceania", "Americas", "Polar"];
+const regions = ["Asia", "Africa", "Europe", "Oceania", "Americas"];
 const InputSelect = ({ setRegionName }: any) => {
   const [region, setRegion] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  
+  const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     setRegionName(region);
   }, [region]);
+
+  useEffect(() => {
+    const checkIfClickedOutside = (e: Event) => {
+      if (
+        e.target instanceof Element &&
+        isOpen &&
+        ref.current &&
+        !ref.current.contains(e.target)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("click", checkIfClickedOutside);
+
+    return () => {
+      document.removeEventListener("click", checkIfClickedOutside);
+    };
+  }, [isOpen]);
 
   const stylez = isOpen ? "block" : "none";
   const onHandleClick = (reg: string) => {
@@ -16,7 +35,7 @@ const InputSelect = ({ setRegionName }: any) => {
     setIsOpen(false);
   };
   return (
-    <div className={s.input_select}>
+    <div className={s.input_select} ref={ref}>
       <div
         className={s.input_select_wrapper}
         onClick={() => setIsOpen(!isOpen)}

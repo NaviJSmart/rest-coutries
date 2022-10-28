@@ -2,16 +2,13 @@ import { useState, useEffect } from "react";
 import useDebounce from "../../hooks/useDebounce";
 import s from "./InputSearch.module.scss";
 
-const InputSearch = ({setName}) => {
+const InputSearch = ({ setName }) => {
   const [term, setTerm] = useState("");
-  const debounce = useDebounce(term, 500)
+  const debounce = useDebounce(term, 500);
   useEffect(() => {
-    
-  
-    setName(debounce)
-  }, [debounce])
-  
-  
+    setName(debounce);
+  }, [debounce]);
+
   return (
     <div className={s.search__input}>
       <div className={s.input__wrapper}>

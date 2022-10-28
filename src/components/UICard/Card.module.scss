@@ -6,7 +6,11 @@
   background-color: var(--bg-elemets);
   box-shadow: rgb(17 21 23 / 9%) 0px 4px 12px 0px;
   border-radius: 5px;
+  transition: scale 0.3s;
   overflow: hidden;
+  &:hover {
+    scale: (1.04);
+  }
   a {
     color: var(--primary-color);
     text-decoration: none;
