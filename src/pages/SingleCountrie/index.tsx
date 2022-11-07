@@ -7,10 +7,10 @@ import useCountriesAPI from "../../services/useCountriesAPI";
 import s from "./SingleCountrie.module.scss";
 
 const SingleCountrie = () => {
-  const { getSingleCountrie, process, setProcess } = useCountriesAPI();
+  const { getSingleCountrie, process } = useCountriesAPI();
   const { nameId } = useParams();
+  
   const [data, setData] = useState<any>(null);
-  console.log(data);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     onRequest();
@@ -93,7 +93,8 @@ const SingleCountrie = () => {
                   data.borders.map((bor: string) => (
                     <BorderCountrie border={bor} key={bor} />
                   ))) ||
-                  "There is no border"}
+                  <p>There is no border</p>
+                  }
               </div>
             </div>
           </div>

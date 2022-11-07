@@ -13,7 +13,7 @@ const useCountriesAPI = () => {
   };
 
   const getSingleCountrie = async (name: string) => {
-    let res = await request(`${_base}name/${name}?fullText=true`);
+    let res = await request(`${_base}name/${name}`);
     return _transformSingleCountrie(res[0]);
   };
 
@@ -38,7 +38,7 @@ const useCountriesAPI = () => {
         .replace(/\B(?=(\d{3})+(?!\d))/g, ","),
       region: data.region,
       subregion: data.subregion,
-      capital: data.capital[0],
+      capital: data.capital?.[0],
       tld: data.tld.join(" "),
       languages: Object.values(data.languages).join(", "),
       currencies: Object.values(data.currencies)

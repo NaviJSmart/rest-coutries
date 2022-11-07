@@ -95,7 +95,8 @@ const Countries = () => {
             Load more
           </button>
         ) : null}
-        <ScrollTop />
+        {views && views.length >= 16 ?  <ScrollTop /> : null}
+       
       </div>
     </>
   );

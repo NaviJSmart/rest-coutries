@@ -59,6 +59,9 @@
   &__bor {
     display: flex;
     flex-wrap: wrap;
+    p {
+      padding-top: 10px;
+    }
   }
   &__borders {
     margin-top: 50px;
