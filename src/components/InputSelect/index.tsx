@@ -8,7 +8,7 @@ const InputSelect = ({ setRegionName }: any) => {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     setRegionName(region);
-  }, [region]);
+  }, [region, setRegionName]);
 
   useEffect(() => {
     const checkIfClickedOutside = (e: Event) => {
